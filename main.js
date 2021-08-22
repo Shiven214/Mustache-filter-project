@@ -1,5 +1,8 @@
-function preload(){
+nosex= 0;
+nosey= 0;
 
+function preload(){
+Mustache_filter= loadImage("m.png");
 }
 
 function setup(){
@@ -16,20 +19,25 @@ function setup(){
 
 function draw(){
 image(video, 0, 0, 300, 300);
+image(Mustache_filter, nosex, nosey, 50, 50);
 }
 
 function modelLoaded(){
-  console.log("Posenet in intialized");
+  console.log("Posenet is intialized");
 }
 
 function gotPoses(results){
   if(results.length>0){
     console.log(results);
-    console.log("nose x= " +results[0].pose.nose.x);
-    console.log("nose y= " +results[0].pose.nose.y);
+   nosex=results[0].pose.nose.x-20;
+   nosey=results[0].pose.nose.y-15;
+    console.log("nose x= " +nosex);
+    console.log("nose y= " +nosey);
   }
 }
 
 function take_snapshot(){
     save('shiven.png');
 }
+
+    
